@@ -6,6 +6,7 @@ public class singlylinkedlist{
         list.insert(30);
         list.insert(40);
         list.insert(50);
+
         list.print();
     }
 }
@@ -33,7 +34,6 @@ class LinkList{
     public void delete(int val){
         if(head == null){
             System.out.println("Empty List Nothing To Remove");
-            return;
         }
         else if(head.data == val){
             if(head == tail){
@@ -55,6 +55,21 @@ class LinkList{
             }
             else{
                 prev.next = temp.next;
+            }
+        }
+    }
+    public void update(int oldVal , int newVal) {
+        if(head == null){
+            System.out.println("Empty List Nothing To update");
+        }
+        else{
+            Node temp = head;
+            while(temp!= null){
+                if(temp.data == oldVal){
+                    temp.data = newVal;
+                    break;
+                }
+                temp = temp.next;
             }
         }
     }
