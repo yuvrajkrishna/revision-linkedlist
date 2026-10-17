@@ -8,7 +8,9 @@ public class singlylinkedlist {
         list.insert(30);
         list.insert(40);
         list.insert(50);
-        list.printReverseNthNode(2);
+        Node var = list.extractRandomNodeAddress();
+        list.randomDelete(var);
+        list.print();
     }
 }
 
@@ -166,6 +168,51 @@ class LinkList {
                 stack.pop();
                 count++;
             }
+        }
+    }
+
+    public Node extractRandomNodeAddress() {
+        if (head == null) {
+            System.out.println("Nothing to find");
+            return head;
+        } else {
+            Node temp = head;
+            int num =3;
+            int count = 1;
+            while (temp != null) {
+                if (count == num) {
+                    return temp;
+                }
+                count++;
+                temp = temp.next;
+            }
+
+            return head;
+        }
+    }
+
+    public void randomDelete(Node d) {
+        if (head == null) {
+            System.out.println("Nothing to delete");
+            return;
+        } else if (head == d) {
+            if (head == tail) {
+                head = tail = null;
+            } else {
+                head = head.next;
+            }
+        } else {
+            Node temp = head;
+            Node prev = null;
+            while (temp != null) {
+                if (temp == d) {
+                    prev.next = temp.next;
+                    return;
+                }
+                prev = temp;
+                temp = temp.next;
+            }
+            System.out.println("Node not part of linked list");
         }
     }
 }
