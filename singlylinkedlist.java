@@ -8,7 +8,7 @@ public class singlylinkedlist {
         list.insert(30);
         list.insert(40);
         list.insert(50);
-        list.printNthNode(2);
+        list.printReverseNthNode(2);
     }
 }
 
@@ -108,37 +108,34 @@ class LinkList {
         }
     }
 
-    public void printReverse(){
-        if(head == null){
+    public void printReverse() {
+        if (head == null) {
             System.out.println("NOT POSSIBLE");
             return;
-        }
-        else if(head == tail){
+        } else if (head == tail) {
             System.out.println(head.data);
-        }
-        else{
+        } else {
             Stack stack = new Stack<>();
             Node temp = head;
-            while(temp != null){
+            while (temp != null) {
                 stack.add(temp.data);
                 temp = temp.next;
             }
-            while(!stack.isEmpty()){
+            while (!stack.isEmpty()) {
                 System.out.println(stack.pop());
             }
         }
     }
 
-    public void printNthNode(int node){
-        if(head == null){
+    public void printNthNode(int node) {
+        if (head == null) {
             System.out.println("Nothing to print");
             return;
-        }
-        else{
+        } else {
             Node temp = head;
             int count = 1;
-            while(temp!= null){
-                if(count == node){
+            while (temp != null) {
+                if (count == node) {
                     System.out.println(temp.data);
                     return;
                 }
@@ -146,6 +143,29 @@ class LinkList {
                 temp = temp.next;
             }
             System.out.println("Node doesn't Exist");
+        }
+    }
+
+    public void printReverseNthNode(int node) {
+        if (head == null) {
+            System.out.println("Nothing to print");
+            return;
+        } else {
+            Stack stack = new Stack<>();
+            Node temp = head;
+            while (temp != null) {
+                stack.add(temp.data);
+                temp = temp.next;
+            }
+            int count = 1;
+            while (!stack.isEmpty()) {
+                if (count == node) {
+                    System.out.println(stack.pop());
+                    return;
+                }
+                stack.pop();
+                count++;
+            }
         }
     }
 }
