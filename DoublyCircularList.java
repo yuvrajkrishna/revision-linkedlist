@@ -4,8 +4,7 @@ public class DoublyCircularList {
         d.insert(10);
         d.insert(20);
         d.insert(30);
-        d.delete(0);
-        d.printDoubly();
+        d.printReverse();
     }
 }
 
@@ -79,6 +78,14 @@ class Doubly{
                 System.out.println("Value Does'nt Exist");
             }
         }
+    }
+    public void printReverse(){
+        DcNode temp = head.prev;
+        do{
+            System.out.println(temp.data);
+            temp = temp.prev;
+        }
+        while(temp != head.prev);
     }
 }
 
