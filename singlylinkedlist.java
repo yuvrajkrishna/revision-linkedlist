@@ -4,13 +4,16 @@ public class singlylinkedlist {
     public static void main(String[] args) {
         LinkList list = new LinkList();
         list.insert(10);
+        list.insert(10);
+        list.insert(20);
+        list.insert(20);
+        list.insert(20);
         list.insert(20);
         list.insert(30);
-        list.insert(40);
-        list.insert(50);
-        list.cycleCreation();
-        list.detectCycle();
-        list.lengthOfTheLoop();
+        list.insert(30);
+        list.insert(30);
+        list.removeDuplicate();
+        list.print();
     }
 }
 
@@ -275,6 +278,20 @@ class LinkList {
                 return;
             }
         }
+    }
+
+    public void removeDuplicate(){
+        Node prev = head;
+        Node temp = head.next;
+        while(temp!= null){
+            if(prev.data != temp.data){
+                prev.next.data = temp.data;
+                prev = prev.next;
+            }
+            temp = temp.next;
+        }
+        prev.next = null;
+        tail = prev;
     }
 }
 
