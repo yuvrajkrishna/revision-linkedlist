@@ -1,18 +1,17 @@
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class singlylinkedlist {
     public static void main(String[] args) {
         LinkList list = new LinkList();
         list.insert(10);
+        list.insert(20);
         list.insert(10);
         list.insert(20);
-        list.insert(20);
-        list.insert(20);
-        list.insert(20);
         list.insert(30);
-        list.insert(30);
-        list.insert(30);
-        list.removeDuplicate();
+        list.insert(20);
+        list.insert(10);
+        list.removeDuplicateUnsorted();
         list.print();
     }
 }
@@ -290,6 +289,39 @@ class LinkList {
             }
             temp = temp.next;
         }
+        prev.next = null;
+        tail = prev;
+    }
+
+    public void removeDuplicateUnsorted(){
+        Node prev = head;
+        Node curr = head.next;
+
+        // Traverse the linked list.
+        while (curr != null) {
+            boolean duplicate = false;
+
+            // Check all previous nodes.
+            Node temp = head;
+            while (temp != curr) {
+                if (temp.data == curr.data) {
+                    duplicate = true;
+                    break;
+                }
+                temp = temp.next;
+            }
+
+            // Remove duplicate node.
+            if (duplicate) {
+                prev.next = curr.next;
+                curr = prev.next;
+            }
+            else {
+                prev = curr;
+                curr = curr.next;
+            }
+        }
+
         prev.next = null;
         tail = prev;
     }
