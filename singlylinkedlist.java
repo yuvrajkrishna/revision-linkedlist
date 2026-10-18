@@ -8,7 +8,8 @@ public class singlylinkedlist {
         list.insert(30);
         list.insert(40);
         list.insert(50);
-        list.printMiddleNode();
+        list.cycleCreation();
+        list.detectCycle();
     }
 }
 
@@ -225,6 +226,34 @@ class LinkList {
             }
             System.out.println(slow.data);
         }
+    }
+
+    public void detectCycle(){
+        if(head == null){
+            System.out.println("Nothing to Detect");
+        }
+        else{
+            Node fast = head;
+            Node slow = head;
+            while(fast.next != null && fast != null){
+                slow = slow.next;
+                fast = fast.next.next;
+                if(slow == fast){
+                    System.out.println("Cycle");
+                    return;
+                }
+            }
+            System.out.println("Not Cycle");
+        }
+    }
+
+
+    public void cycleCreation(){
+        Node temp = head;
+        while(temp.next != tail){
+            temp = temp.next;
+        }
+        temp.next = head;
     }
 }
 
