@@ -10,6 +10,7 @@ public class singlylinkedlist {
         list.insert(50);
         list.cycleCreation();
         list.detectCycle();
+        list.lengthOfTheLoop();
     }
 }
 
@@ -254,6 +255,26 @@ class LinkList {
             temp = temp.next;
         }
         temp.next = head;
+    }
+
+    public void lengthOfTheLoop(){
+        Node fast = head;
+        Node slow = head;
+        
+        while(fast.next != null && fast != null){
+            slow =slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                int count = 1;
+                Node temp = slow.next;
+                while(temp!= slow){
+                    count++;
+                    temp = temp.next;
+                }
+                System.out.println(count);
+                return;
+            }
+        }
     }
 }
 
