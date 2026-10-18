@@ -6,12 +6,9 @@ public class singlylinkedlist {
         LinkList list = new LinkList();
         list.insert(10);
         list.insert(20);
-        list.insert(10);
-        list.insert(20);
         list.insert(30);
-        list.insert(20);
-        list.insert(10);
-        list.removeDuplicateUnsorted();
+        list.insert(40);
+        list.reverseLinkedList();
         list.print();
     }
 }
@@ -324,6 +321,19 @@ class LinkList {
 
         prev.next = null;
         tail = prev;
+    }
+
+    public void reverseLinkedList(){
+        Node curr = head;
+        Node prev = null;
+        Node nex = null;
+        while(curr != null){
+            nex = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nex;
+        }
+        head = prev;
     }
 }
 
