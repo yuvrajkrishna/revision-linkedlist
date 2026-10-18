@@ -1,10 +1,14 @@
 public class DoublyCircularList {
     public static void main(String[] args) {
         Doubly d = new Doubly();
-        d.insert(10);
-        d.insert(20);
-        d.insert(30);
-        d.printReverse();
+        d.insert(1);
+        d.insert(2);
+        d.insert(3);
+        d.insert(4);
+        d.insert(5);
+        d.insert(5);
+        d.insert(6);
+        d.pairSumForSortedList(8);
     }
 }
 
@@ -86,6 +90,25 @@ class Doubly{
             temp = temp.prev;
         }
         while(temp != head.prev);
+    }
+    public void pairSumForSortedList(int target){
+        DcNode left = head;
+        DcNode right = head.prev;
+        while(left != right || left.prev != right){
+            if(left.data + right.data == target){
+                System.out.println("Node Num left : "+left);
+                System.out.println("Node Num Right : "+right);
+                return;
+            }
+            else if(left.data + right.data < target){
+                left = left.next;
+            }
+            else{
+                right = right.prev;
+            }
+        }
+        System.out.println("Not Exist");
+
     }
 }
 
