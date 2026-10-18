@@ -8,9 +8,7 @@ public class singlylinkedlist {
         list.insert(30);
         list.insert(40);
         list.insert(50);
-        Node var = list.extractRandomNodeAddress();
-        list.randomDelete(var);
-        list.print();
+        list.printMiddleNode();
     }
 }
 
@@ -95,10 +93,9 @@ class LinkList {
         }
     }
 
-    public void count() {
+    public int count() {
         if (head == null) {
-            System.out.println(0);
-            return;
+            return 0;
         } else {
             Node temp = head;
             int count = 0;
@@ -106,7 +103,7 @@ class LinkList {
                 count++;
                 temp = temp.next;
             }
-            System.out.println(count);
+            return count;
         }
     }
 
@@ -177,7 +174,7 @@ class LinkList {
             return head;
         } else {
             Node temp = head;
-            int num =3;
+            int num = 3;
             int count = 1;
             while (temp != null) {
                 if (count == num) {
@@ -195,24 +192,38 @@ class LinkList {
         if (head == null) {
             System.out.println("Nothing to delete");
             return;
-        } else if (head == d) {
-            if (head == tail) {
-                head = tail = null;
-            } else {
-                head = head.next;
-            }
-        } else {
-            Node temp = head;
-            Node prev = null;
-            while (temp != null) {
-                if (temp == d) {
-                    prev.next = temp.next;
+        }
+
+        else {
+            Node temp = d;
+
+            while (temp.next != null) {
+                temp.data = temp.next.data;
+
+                if (temp.next == tail) {
+                    tail = temp;
+                    temp.next = null;
                     return;
                 }
-                prev = temp;
+
                 temp = temp.next;
             }
-            System.out.println("Node not part of linked list");
+        }
+    }
+
+    public void printMiddleNode(){
+        if(head == null){
+            System.out.println("Empty List");
+            return;
+        }
+        else {
+            Node fast = head;
+            Node slow = head;
+            while(fast.next != null && fast != null){
+                slow =slow.next;
+                fast = fast.next.next;
+            }
+            System.out.println(slow.data);
         }
     }
 }
