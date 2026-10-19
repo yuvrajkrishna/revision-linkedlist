@@ -4,17 +4,15 @@ public class DoublyLinkedList {
         Doubly d = new Doubly();
 
         d.insert(1);
+        d.insert(2);
+        d.insert(2);
+        d.insert(2);
         d.insert(1);
-        d.insert(2);
-        d.insert(2);
-        d.insert(3);
         d.insert(4);
         d.insert(5);
-        d.insert(5);
-       d.RemoveDuplicate();
-       d.printDoubly();
-        
-
+        d.insert(3);
+        d.RemoveDuplicateUnsorted();
+        d.printDoubly();
 
     }
 }
@@ -209,15 +207,14 @@ class Doubly {
 
     }
 
-    public void RemoveDuplicate(){
-        if(head == null){
+    public void RemoveDuplicate() {
+        if (head == null) {
             System.out.println("Empty list");
-        }
-        else{
+        } else {
             DcNode curr = head;
             DcNode nxt = head.next;
-            while(nxt != null){
-                if(curr.data != nxt.data){
+            while (nxt != null) {
+                if (curr.data != nxt.data) {
                     curr.next = nxt;
                     nxt.prev = curr;
                     curr = nxt;
@@ -225,6 +222,64 @@ class Doubly {
                 nxt = nxt.next;
             }
             curr.next = null;
+        }
+    }
+
+    public void RemoveDuplicateUnsorted() {
+        if (head == null) {
+            System.out.println("Empty list");
+        } else {
+            DcNode curr = head;
+            DcNode nxt = head.next;
+            while (nxt != null) {
+                boolean isdup = false;
+                if (curr.data != nxt.data) {
+                    DcNode temp = head;
+                    while (temp != curr) {
+                        if(temp.data == nxt.data){
+                            isdup = true;
+                            break;
+                        }
+                        temp = temp.next;
+                    }
+                    if(!isdup){
+                        curr.next = nxt;
+                        nxt.prev = curr;
+                        curr = nxt;
+                    }
+                    
+                }
+                else{
+
+                }
+                nxt = nxt.next;
+            }
+            curr.next = null;
+        }
+    }
+
+    public void deleteRandomNode(DcNode d){
+        if(head == null || d == null){
+            System.out.println("Nothing to Delete");
+            return ;
+        }
+        else if(d.prev == null){
+            if(d.next != null){
+                 head = d.next;
+             head.prev = null;
+            }
+            else{
+                head = null;
+            }
+        }
+        else if(d.next == null){
+            d.prev.next = null;
+        }
+        else{
+            DcNode pre = d.prev;
+            DcNode nxt = d.next;
+            pre.next = nxt;
+            nxt.prev = pre;
         }
     }
 }
