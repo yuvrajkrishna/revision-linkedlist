@@ -4,13 +4,16 @@ public class DoublyLinkedList {
         Doubly d = new Doubly();
 
         d.insert(1);
+        d.insert(1);
+        d.insert(2);
         d.insert(2);
         d.insert(3);
         d.insert(4);
         d.insert(5);
         d.insert(5);
-        d.insert(6);
-        d.insertSorted(2);
+       d.RemoveDuplicate();
+       d.printDoubly();
+        
 
 
     }
@@ -204,6 +207,25 @@ class Doubly {
 
         temp.next = nn;
 
+    }
+
+    public void RemoveDuplicate(){
+        if(head == null){
+            System.out.println("Empty list");
+        }
+        else{
+            DcNode curr = head;
+            DcNode nxt = head.next;
+            while(nxt != null){
+                if(curr.data != nxt.data){
+                    curr.next = nxt;
+                    nxt.prev = curr;
+                    curr = nxt;
+                }
+                nxt = nxt.next;
+            }
+            curr.next = null;
+        }
     }
 }
 
