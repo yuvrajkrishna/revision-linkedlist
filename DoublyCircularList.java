@@ -91,32 +91,51 @@ class Doubly{
         }
         while(temp != head.prev);
     }
-    public void pairSumForSortedList(int target){
-        DcNode left = head;
-        DcNode right = head.prev;
-        while(left != right || left.prev != right){
-            if(left.data + right.data == target){
-                System.out.println("Node Num left : "+left);
-                System.out.println("Node Num Right : "+right);
-                return;
-            }
-            else if(left.data + right.data < target){
-                left = left.next;
-            }
-            else{
-                right = right.prev;
-            }
-        }
+    public void pairSumForSortedList(int target) {
+    if (head == null || head.next == head) {
         System.out.println("Not Exist");
-
+        return;
     }
+
+    // Count nodes
+    int n = 0;
+    DcNode temp = head;
+
+    do {
+        n++;
+        temp = temp.next;
+    } while (temp != head);
+
+    DcNode left = head;
+    DcNode right = head.prev;
+
+    for (int i = 0; i < n / 2; i++) {
+        int sum = left.data + right.data;
+
+        System.out.println(left.data + " + " + right.data + " = " + sum);
+
+        if (sum == target) {
+            System.out.println("Left: " + left.data);
+            System.out.println("Right: " + right.data);
+            return;
+        } else if (sum < target) {
+            left = left.next;
+        } else {
+            right = right.prev;
+        }
+    }
+
+    System.out.println("Not Exist");
 }
 
-class DcNode{
+    }
+
+class DcNode {
     int data;
     DcNode next;
     DcNode prev;
-    DcNode(int data){
+
+    DcNode(int data) {
         this.data = data;
     }
 }
