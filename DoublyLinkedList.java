@@ -10,8 +10,8 @@ public class DoublyLinkedList {
         d.insert(5);
         d.insert(5);
         d.insert(6);
-        d.ReverseDoublyLinkedList();
-        d.printDoubly();
+        d.insertSorted(2);
+
 
     }
 }
@@ -169,6 +169,41 @@ class Doubly {
             head = prv;
 
         }
+    }
+
+    public void insertSorted(int data) {
+
+        DcNode nn = new DcNode(data);
+
+        // Case 1: Empty list or insert before head
+        if (head == null || data <= head.data) {
+            nn.next = head;
+
+            if (head != null) {
+                head.prev = nn;
+            }
+
+            head = nn;
+            return;
+        }
+
+        // Find the correct position
+        DcNode temp = head;
+
+        while (temp.next != null && temp.next.data < data) {
+            temp = temp.next;
+        }
+
+        // Insert after temp
+        nn.next = temp.next;
+        nn.prev = temp;
+
+        if (temp.next != null) {
+            temp.next.prev = nn;
+        }
+
+        temp.next = nn;
+
     }
 }
 
